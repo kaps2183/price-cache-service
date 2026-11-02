@@ -1,0 +1,25 @@
+### Requests for the IntelliJ / VS Code REST client. Start the app with the demo profile first.
+@base = http://localhost:8080/api/v1/prices
+
+### Publish a price
+POST {{base}}
+Content-Type: application/json
+
+{
+  "vendorId": "BLOOMBERG",
+  "instrumentId": "AAPL",
+  "bid": 190.00,
+  "ask": 190.10,
+  "currency": "USD",
+  "timestamp": "{{$isoTimestamp}}"
+}
+
+
+### All prices from a vendor
+GET {{base}}/vendors/BLOOMBERG
+
+### All vendors' prices for an instrument
+GET {{base}}/instruments/AAPL
+
+### Health
+GET http://localhost:8080/actuator/health

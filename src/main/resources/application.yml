@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: price-cache-service
+
+price-cache:
+  # Prices older than this are rejected on publish, hidden from reads and evicted.
+  retention: 30d
+  # How often the eviction job runs (ISO-8601, parsed by @Scheduled).
+  eviction-interval: PT1H
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+logging:
+  level:
+    root: INFO
+    com.example.pricecache: DEBUG
