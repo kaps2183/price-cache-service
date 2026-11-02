@@ -13,17 +13,7 @@
 
 ## 2. Architecture
 
-```mermaid
-flowchart LR
-    V[Vendors] -- POST /api/v1/prices --> C[PriceController]
-    CL[Client systems] -- GET by vendor / instrument --> C
-    C --> S[PriceCacheService]
-    S --> R[(PriceRepository<br/>InMemoryPriceRepository)]
-    S -- PricePublishedEvent --> D[DownstreamPriceDistributor]
-    D --> S1[LoggingPriceSubscriber]
-    D --> S2[Other PriceSubscriber<br/>e.g. Kafka / JMS / WebSocket]
-    J[StalePriceEvictionJob<br/>@Scheduled] --> S
-```
+![architecture](images/architecture.png)
 
 The layers are:
 
